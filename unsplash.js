@@ -21,7 +21,6 @@ export const getPhotos = ({ query, page = 1, perPage = 10 }) =>
         console.log('error occurred: ', result.errors[0]);
       } else {
         const { results } = result.response;
-        console.log(results);
         return results;
       }
     });
