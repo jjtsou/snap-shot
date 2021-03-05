@@ -10,6 +10,7 @@ module.exports = {
     // extensions: ['*', '.js', '.jsx'],
     extensions: ['.js', '.jsx'],
   },
+  stats: 'errors-only',
   module: {
     rules: [
       {
