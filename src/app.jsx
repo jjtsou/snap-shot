@@ -1,11 +1,6 @@
-import { useState } from 'react';
 import ReactDom from 'react-dom';
-import SearchBar from './components/searchBar/SearchBar';
+import ImageGalleryPage from './pages/ImageGalleryPage';
 
-const App = () => {
-  const [images, setImages] = useState([]);
-
-  return <SearchBar setImages={setImages} />;
-};
+const App = () => <ImageGalleryPage />;
 
 ReactDom.render(<App />, document.getElementById('root'));

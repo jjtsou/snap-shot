@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 const StyledSearchBar = styled.div`
-  width: auto;
-  max-width: 35%;
+  width: 30vw;
+  min-width: 350px;
   height: auto;
   max-height: 36px;
-  margin: 0 auto;
   display: flex;
 `;
 
