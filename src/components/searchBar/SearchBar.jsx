@@ -19,6 +19,9 @@ const SearchBar = ({ setImages }) => {
       setImages(filteredImages);
     });
   };
+  const onHandleKeyDown = (e) => {
+    if (e.key === 'Enter') searchForImages();
+  };
 
   return (
     <StyledSearchBar>
@@ -26,6 +29,7 @@ const SearchBar = ({ setImages }) => {
         type="text"
         value={value}
         onChange={setInputValue}
+        onKeyDown={onHandleKeyDown}
         placeholder="Search"
         aria-label="Search for images"
       />
