@@ -1,18 +1,22 @@
 import styled from 'styled-components';
 
 const StyledImageGallery = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 325px 325px 325px;
 `;
 
 const StyledImage = styled.img`
-  flex: 1 0 auto;
-  max-height: 40vh;
-  max-height: 40vw;
-  padding: 10px;
-  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+
+  &:hover {
+    transition: all 0.7s;
+    transform: scale(1.06);
+  }
 `;
 
 export { StyledImageGallery, StyledImage };

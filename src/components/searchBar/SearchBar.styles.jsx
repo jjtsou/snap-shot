@@ -6,6 +6,7 @@ const StyledSearchBar = styled.div`
   height: auto;
   max-height: 36px;
   display: flex;
+  margin-bottom: 25px;
 `;
 
 const StyledSearchInput = styled.input`

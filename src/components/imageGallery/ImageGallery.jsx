@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import { StyledImageGallery, StyledImage } from './ImageGallery.styles';
 
-const ImageGallery = ({ images }) => (
-  <StyledImageGallery>
-    {images.map(({ id, alt, url }) => (
-      <StyledImage key={id} src={url} alt={alt} />
-    ))}
-  </StyledImageGallery>
-);
+const ImageGallery = ({ images }) => {
+  if (!images.length) return null;
+  return (
+    <StyledImageGallery>
+      {images.map(({ id, alt, url }) => (
+        <StyledImage key={id} src={url} alt={alt} />
+      ))}
+    </StyledImageGallery>
+  );
+};
 
 ImageGallery.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object),

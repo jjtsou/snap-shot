@@ -9,7 +9,7 @@ const api = createApi({
   accessKey: credentials.ACCESS_KEY,
 });
 
-export const getPhotos = ({ query, page = 1, perPage = 10 }) =>
+export const getPhotos = ({ query, page = 1, perPage = 9 }) =>
   api.search
     .getPhotos({
       query,
