@@ -1,15 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyledImageGalleryPage } from './ImageGalleryPage.styles';
 import ImageGallery from '../components/imageGallery';
 import SearchBar from '../components/searchBar';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
+import { getPhotos } from '../../unsplash';
+import { filterImageProperties } from '../utils/filterImageProperties';
 
 const ImageGalleryPage = () => {
   const [images, setImages] = useState([]);
+  const [page, setPage] = useState(1);
+  const [query, setQuery] = useState('');
+  const [ref, isIntersecting] = useIntersectionObserver();
+
+  useEffect(() => {
+    if (isIntersecting) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  }, [isIntersecting]);
+
+  useEffect(() => {
+    if (query) {
+      getPhotos({ query, page }).then((imagesFromApi) => {
+        const filteredImages = filterImageProperties(imagesFromApi);
+        const newImages = [...images, ...filteredImages];
+        setImages(newImages);
+      });
+    }
+  }, [page]);
 
   return (
     <StyledImageGalleryPage>
-      <SearchBar setImages={setImages} />
-      <ImageGallery images={images} />
+      <SearchBar
+        setImages={setImages}
+        query={query}
+        setQuery={setQuery}
+        setPage={setPage}
+      />
+      <ImageGallery images={images} ref={ref} />
     </StyledImageGalleryPage>
   );
 };

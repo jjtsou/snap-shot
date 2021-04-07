@@ -4,7 +4,7 @@ const StyledImageGallery = styled.div`
   display: grid;
   gap: 25px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 325px 325px 325px;
+  grid-auto-rows: 325px;
 `;
 
 const StyledImage = styled.img`
