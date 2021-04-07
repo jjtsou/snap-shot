@@ -16,6 +16,7 @@ export const getPhotos = ({ query, page = 1, perPage = 9 }) =>
       page,
       perPage,
     })
+    // eslint-disable-next-line consistent-return
     .then((result) => {
       if (result.errors) {
         console.log('error occurred: ', result.errors[0]);

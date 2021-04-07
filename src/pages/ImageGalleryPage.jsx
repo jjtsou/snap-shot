@@ -19,13 +19,14 @@ const ImageGalleryPage = () => {
   }, [isIntersecting]);
 
   useEffect(() => {
-    if (query) {
+    if (page !== 1 && query) {
       getPhotos({ query, page }).then((imagesFromApi) => {
         const filteredImages = filterImageProperties(imagesFromApi);
         const newImages = [...images, ...filteredImages];
         setImages(newImages);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   return (
