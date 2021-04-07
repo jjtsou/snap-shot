@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -10,14 +9,15 @@ import {
   StyledSearchInput,
 } from './SearchBar.styles';
 
-const SearchBar = ({ setImages }) => {
-  const [value, setValue] = useState('');
-  const setInputValue = (e) => setValue(e.target.value);
+const SearchBar = ({ setImages, query, setQuery, setPage }) => {
+  const setInputValue = (e) => setQuery(e.target.value);
   const searchForImages = () => {
-    getPhotos({ query: value }).then((images) => {
-      const filteredImages = filterImageProperties(images);
-      setImages(filteredImages);
-    });
+    getPhotos({ query })
+      .then((images) => {
+        const filteredImages = filterImageProperties(images);
+        setImages(filteredImages);
+      })
+      .then(setPage(1));
   };
   const onHandleKeyDown = (e) => {
     if (e.key === 'Enter') searchForImages();
@@ -27,7 +27,7 @@ const SearchBar = ({ setImages }) => {
     <StyledSearchBar>
       <StyledSearchInput
         type="text"
-        value={value}
+        value={query}
         onChange={setInputValue}
         onKeyDown={onHandleKeyDown}
         placeholder="Search"
@@ -42,6 +42,9 @@ const SearchBar = ({ setImages }) => {
 
 SearchBar.propTypes = {
   setImages: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
